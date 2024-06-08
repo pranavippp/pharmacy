@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="message.css">
+</head>
+
+<body>
+
+<form id="autoRedirectForm" action="redirect.html" method="GET">
+    <div class="success-container">
+        <i class="fas fa-thumbs-up left-thumb"></i>
+        <h1>Message sent, thank you</h1>
+        <i class="fas fa-thumbs-up right-thumb"></i>
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.getElementById('autoRedirectForm').submit();
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>

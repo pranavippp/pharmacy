@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <!-- cart.html -->
+<!-- cart.html -->
+
+<main>
+    <h1>Your Cart</h1>
+    <ul id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </ul>
+    <p id="no-items">No items added</p>
+    <p id="total-cost">Total Cost: $0.00</p>
+    <button id="order-now-btn">Order Now</button>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cartItemsList = document.getElementById('cart-items');
+        const noItemsText = document.getElementById('no-items');
+        const totalCostElement = document.getElementById('total-cost');
+        let totalCost = 0;
+  
+        // Function to update cart value and total cost
+        function updateCart() {
+          const cartValue = cartItemsList.children.length;
+          document.getElementById('cart-value').textContent = cartValue;
+          if (cartValue === 0) {
+            noItemsText.style.display = 'block'; // Show "No items added" when cart is empty
+          } else {
+            noItemsText.style.display = 'none'; // Hide "No items added" when cart has items
+          }
+          totalCostElement.textContent = `Total Cost: $${totalCost.toFixed(2)}`;
+        }
+  
+        // Function to add item to cart
+        function addItemToCart(item) {
+          const li = document.createElement('li');
+  
+          // Create text content
+          const textContent = document.createElement('div');
+          textContent.textContent = `${item.name} - MRP: $${item.mrp.toFixed(2)}`;
+          li.appendChild(textContent);
+  
+          // Create remove button
+          const removeBtn = document.createElement('button');
+          removeBtn.textContent = 'Remove from Cart';
+          removeBtn.addEventListener('click', () => {
+            const removeConfirmation = confirm('Are you sure you want to remove this item from the cart?');
+            if (removeConfirmation) {
+              li.remove();
+              totalCost -= item.mrp;
+              updateCart();
+            }
+          });
+          li.appendChild(removeBtn);
+  
+          cartItemsList.appendChild(li);
+          totalCost += item.mrp;
+          updateCart();
+        }
+  
+        // Add item to cart when user clicks the "Add to Cart" button
+        const products = document.querySelectorAll('.product');
+        products.forEach((product) => {
+          product.addEventListener('click', () => {
+            const productName = product.querySelector('h2').textContent;
+            const productMRP = parseFloat(product.querySelector('.mrp').textContent.replace('MRP: $', ''));
+            addItemToCart({ name: productName, mrp: productMRP });
+          });
+        });
+  
+        // Display initial cart
+        updateCart();
+  
+        // Order Now button functionality (can be implemented as needed)
+        const orderNowBtn = document.getElementById('order-now-btn');
+        orderNowBtn.addEventListener('click', () => {
+          alert('Order placed successfully!');
+          // Additional logic for order placement can be added here
+        });
+      });
+    </script>
+  </main>
+</body>
+</html>
