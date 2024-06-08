@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<div class="overlay"></div>
+    <div class="login-container">
+        <h2>Hi  <a href="index.html">
+            <button id="back-button" class="back-button"><i class="fa-solid fa-arrow-left"></i></button></a></h2>
+        <p>Please enter your<br>Mobile number to Login</p>
+        <form class="login-form" action="redirect.html" method="post">
+            <input type="text" name="phone" placeholder="Enter your phone number" required>
+            <span>OTP will be sent to this number by SMS and WhatsApp. By signing up, I agree to the Privacy Policy, Terms and Conditions of Apollo Pharmacy.</span>
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('.login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            var phoneNumber = document.querySelector('input[name="phone"]').value;
+            // Replace with your OTP generation and submission logic
+            alert('OTP has been sent to ' + phoneNumber);
+            window.location.href = 'redirect.html'; // Redirect after handling OTP logic
+        });
+    </script>
+
+</body>
+</html>
